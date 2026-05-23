@@ -88,14 +88,18 @@ export default function NewShotModal({
   const handleSave = async () => {
     setSaving(true);
 
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
     const shotData = {
       roll_id: rollId,
+      user_id: user.id,
       frame_number: frameNumber,
       aperture: aperture || null,
       shutter_speed: shutterSpeed || null,
       lens: lens.trim() || null,
       light_condition: lightCondition || null,
-      filter: filter.trim() || null,
+      filter_used: filter.trim() || null,
       description: description.trim() || null,
     };
 
