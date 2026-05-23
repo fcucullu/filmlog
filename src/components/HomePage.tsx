@@ -27,20 +27,20 @@ export default function HomePage() {
   const supabase = createClient();
 
   const fetchRolls = useCallback(async () => {
-    const { data } = await supabase
-      .from("filmlog_rolls")
-      .select("*, filmlog_shots(count)")
-      .order("created_at", { ascending: false });
+    console.log("[FilmLog] fetchRolls start");
+    try {
+      const { data, error } = await supabase
+        .from("filmlog_rolls")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-    if (data) {
-      setRolls(
-        data.map((r: Record<string, unknown>) => ({
-          ...r,
-          shot_count: Array.isArray(r.filmlog_shots)
-            ? (r.filmlog_shots[0] as { count: number })?.count ?? 0
-            : 0,
-        })) as Roll[]
-      );
+      console.log("[FilmLog] fetchRolls result:", data?.length, "rolls, error:", error?.message);
+
+      if (data) {
+        setRolls(data.map((r: Record<string, unknown>) => ({ ...r, shot_count: 0 })) as Roll[]);
+      }
+    } catch (e) {
+      console.error("[FilmLog] fetchRolls error:", e);
     }
   }, [supabase]);
 
@@ -49,18 +49,24 @@ export default function HomePage() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       console.log("[FilmLog] auth state change:", _event, session?.user?.email);
-      setUser(session?.user ?? null);
-      if (session?.user) await fetchRolls();
+      const u = session?.user ?? null;
+      setUser(u);
       setLoading(false);
+      if (u) {
+        fetchRolls().catch(console.error);
+      }
     });
 
     // Also check current session
     supabase.auth.getSession().then(({ data: { session } }) => {
       console.log("[FilmLog] getSession:", session?.user?.email || "no session");
-      setUser(session?.user ?? null);
-      if (session?.user) fetchRolls();
+      const u = session?.user ?? null;
+      setUser(u);
       setLoading(false);
-    });
+      if (u) {
+        fetchRolls().catch(console.error);
+      }
+    }).catch(() => setLoading(false));
 
     return () => subscription.unsubscribe();
   }, []);
