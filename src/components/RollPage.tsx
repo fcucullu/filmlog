@@ -9,7 +9,7 @@ interface Roll {
   id: string;
   name: string;
   film_stock: string;
-  asa: number;
+  asa_iso: number;
   total_frames: number;
   camera: string | null;
   notes: string | null;
