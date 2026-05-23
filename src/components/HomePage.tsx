@@ -46,18 +46,27 @@ export default function HomePage() {
 
   useEffect(() => {
     const init = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-      if (user) await fetchRolls();
+      console.log("[FilmLog] init start");
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        console.log("[FilmLog] getUser:", user?.email || "no user", error?.message || "no error");
+        setUser(user);
+        if (user) {
+          console.log("[FilmLog] fetching rolls...");
+          await fetchRolls();
+        }
+      } catch (e) {
+        console.error("[FilmLog] init error:", e);
+      }
       setLoading(false);
+      console.log("[FilmLog] loading done");
     };
     init();
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      console.log("[FilmLog] auth state change:", _event, session?.user?.email);
       setUser(session?.user ?? null);
       if (session?.user) await fetchRolls();
     });
