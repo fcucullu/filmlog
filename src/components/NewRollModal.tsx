@@ -52,7 +52,7 @@ export default function NewRollModal({ onClose, onSaved }: Props) {
       user_id: user.id,
       name: name.trim(),
       film_stock: filmStock.trim() || "Unknown",
-      asa,
+      asa_iso: asa,
       total_frames: totalFrames,
       camera: camera.trim() || null,
       notes: notes.trim() || null,

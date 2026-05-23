@@ -9,7 +9,7 @@ interface Roll {
   id: string;
   name: string;
   film_stock: string;
-  asa: number;
+  asa_iso: number;
   total_frames: number;
   camera: string | null;
   notes: string | null;
@@ -186,7 +186,7 @@ export default function HomePage() {
                         {roll.name}
                       </h3>
                       <p className="text-sm text-[#8B8B8B]">
-                        {roll.film_stock} &middot; ASA {roll.asa}
+                        {roll.film_stock} &middot; ASA {roll.asa_iso}
                       </p>
                     </div>
                     <span

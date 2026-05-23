@@ -159,7 +159,7 @@ export default function RollPage({ rollId }: { rollId: string }) {
           <div className="flex items-start justify-between mb-3">
             <div>
               <p className="text-sm text-[#8B8B8B]">
-                {roll.film_stock} &middot; ASA {roll.asa}
+                {roll.film_stock} &middot; ASA {roll.asa_iso}
               </p>
               {roll.camera && (
                 <p className="text-sm text-[#8B8B8B] mt-0.5">{roll.camera}</p>
@@ -389,7 +389,7 @@ export default function RollPage({ rollId }: { rollId: string }) {
       {showNewShot && (
         <NewShotModal
           rollId={rollId}
-          asa={roll.asa}
+          asa={roll.asa_iso}
           nextFrame={nextFrame}
           editShot={editShot}
           onClose={() => {
