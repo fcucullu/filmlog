@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FilmLog
 
-## Getting Started
+**Your analog film photography companion.**
 
-First, run the development server:
+## The Problem
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Analog photographers lose track of settings, exposures, and which rolls they've shot. Without digital metadata, it's easy to forget what aperture, shutter speed, or lighting conditions you used for each frame — making it hard to learn from your results.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## The Solution
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+FilmLog lets you log rolls of film and individual shots with full exposure data: aperture, shutter speed, lens, and light conditions. A built-in exposure indicator based on the Sunny 16 rule helps you nail exposure in the field without a light meter.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Who It's For
 
-## Learn More
+- Film photographers (35mm, 120, large format)
+- Photography students learning exposure
+- Hobbyists who want to track their analog work
 
-To learn more about Next.js, take a look at the following resources:
+## Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Roll tracking with status (active / developed / archived)
+- Shot logging with aperture, shutter speed, ISO, and lens data
+- Sunny 16 exposure indicator for quick reference in the field
+- Film stock suggestions
+- PWA — installable on any device
+- Works offline for field use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+- **Frontend:** Next.js, Tailwind CSS
+- **Backend:** Supabase (PostgreSQL + Auth)
+- **Hosting:** Vercel
+- **PWA:** Service worker with offline fallback
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Live
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[https://filmlog.franciscocucullu.com](https://filmlog.franciscocucullu.com)
+
+## Author
+
+**Francisco Cucullu** — Indie developer building tools for creative people.
+
+- Website: [franciscocucullu.com](https://franciscocucullu.com)
+- GitHub: [github.com/franciscocucullu](https://github.com/franciscocucullu)
+- WhatsApp: [Chat with Fran](https://wa.me/34644941706)

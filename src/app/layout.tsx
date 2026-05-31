@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { ServiceWorkerRegister } from "@/components/sw-register";
+import { BottomNav } from "@/components/BottomNav";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -10,12 +13,33 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "FilmLog",
-  description: "Analog film photography log",
+  description: "Your analog film photography companion. Log rolls and shots with exposure data.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "FilmLog",
+  },
+  openGraph: {
+    title: "FilmLog",
+    description: "Your analog film photography companion. Log rolls and shots with exposure data.",
+    url: "https://filmlog.franciscocucullu.com",
+    siteName: "FilmLog",
+    images: [
+      {
+        url: "https://filmlog.franciscocucullu.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FilmLog - Analog film photography companion",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FilmLog",
+    description: "Your analog film photography companion. Log rolls and shots with exposure data.",
+    images: ["https://filmlog.franciscocucullu.com/og-image.png"],
   },
 };
 
@@ -36,6 +60,8 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#111] text-[#ededed]">
         {children}
+        <BottomNav />
+        <ServiceWorkerRegister />
         <Analytics />
       </body>
     </html>
