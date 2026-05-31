@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 import NewRollModal from "@/components/NewRollModal";
+import { InstallPrompt } from "@/components/install-prompt";
 
 interface Roll {
   id: string;
@@ -146,6 +147,7 @@ export default function HomePage() {
 
       {/* Content */}
       <main className="flex-1 px-4 py-6 max-w-2xl mx-auto w-full">
+        <InstallPrompt />
         {rolls.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center py-20 text-center">
             <div className="text-4xl mb-3">🎞️</div>
