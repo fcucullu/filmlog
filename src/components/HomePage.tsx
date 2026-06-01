@@ -123,6 +123,9 @@ export default function HomePage() {
           >
             Sign in with Google
           </button>
+          <div className="mt-8">
+            <InstallPrompt />
+          </div>
         </div>
       </div>
     );
